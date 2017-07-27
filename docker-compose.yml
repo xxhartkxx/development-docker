@@ -21,16 +21,6 @@ redis:
     - ./volumes/configs/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
   restart: always
 
-# memcached:
-#   container_name: memcached
-#   image: memcached
-#   environment:
-#     - TERM=xterm
-#   ports:
-#     - "11211:11211"
-#   command: memcached -m 64
-#   restart: always
-
 php-fpm:
   container_name: php-fpm
   build: Dockerfile/php-fpm
@@ -41,7 +31,6 @@ php-fpm:
   links:
     - mysql:mysql.my.local
     - redis:redis.my.local
-    # - memcached:memcached.my.local
   volumes:
     - ./volumes/configs/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
     - ./volumes/logs/mail:/var/log/mail
